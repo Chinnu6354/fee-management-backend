@@ -52,6 +52,8 @@ public class FeeHeadService {
 
         FeeHead feeHead = getFeeHeadById(id);
 
-        feeHeadRepository.delete(feeHead);
+        feeHead.setActive(false);
+
+        feeHeadRepository.save(feeHead);
     }
 }

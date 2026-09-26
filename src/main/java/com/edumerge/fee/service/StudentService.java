@@ -25,6 +25,8 @@ public class StudentService {
             throw new RuntimeException("Student ID already exists");
         }
 
+        student.setActive(true);
+
         return studentRepository.save(student);
     }
 
@@ -50,7 +52,8 @@ public class StudentService {
         student.setCourse(updatedStudent.getCourse());
         student.setDepartment(updatedStudent.getDepartment());
         student.setAdmissionYear(updatedStudent.getAdmissionYear());
-        student.setActive(updatedStudent.getActive());
+
+        student.setActive(true);
 
         return studentRepository.save(student);
     }
@@ -59,6 +62,8 @@ public class StudentService {
 
         Student student = getStudentById(id);
 
-        studentRepository.delete(student);
+        student.setActive(false);
+
+        studentRepository.save(student);
     }
 }
